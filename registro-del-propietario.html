@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Propietario - TerraViviendaChilena</title>
+    <link rel="stylesheet" href="estilo-de-la-pagina.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    
+    <header>
+        <div class="logo-titulo">
+            <img src="imagenes/terraviviendachilena.jpg" alt="TerraViviendaChilena">
+            <h1>TerraViviendaChilena</h1>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="propiedades.html">Propiedades</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="registro">
+            <header>
+                <h1>Registro de Propietario</h1>
+                <p>Complete el formulario para registrar su propiedad y recibir acceso a nuestra plataforma.</p>
+            </header>
+
+            <article>
+                <h2>Datos del propietario</h2>
+                <form id="registroForm" autocomplete="on">
+                    <div>
+                        <label for="rut">RUT</label>
+                        <input type="text" id="rut" name="rut" placeholder="12.345.678-9" required />
+                    </div>
+
+                    <div>
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required />
+                        <div id="nombreHint" style="font-size: 14px; margin-top: 5px;"></div>
+                    </div>
+
+                    <div>
+                        <label for="nacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="nacimiento" name="nacimiento" required />
+                    </div>
+
+                    <div>
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required />
+                    </div>
+
+                    <div>
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena" required />
+                        <div id="passwordHint" style="font-size: 14px; margin-top: 5px;"></div>
+                    </div>
+
+                    <div>
+                        <label for="genero">Género</label>
+                        <select id="genero" name="genero" required>
+                            <option value="">Seleccione...</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="telefono">Teléfono móvil</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+56 9 1234 5678" required />
+                    </div>
+
+                    <div>
+                        <label for="propiedad">Número de propiedad</label>
+                        <input type="text" id="propiedad" name="propiedad" placeholder="12345" required />
+                    </div>
+
+                    <div>
+                        <button type="submit">Enviar registro</button>
+                    </div>
+                </form>
+                <p style="text-align:center;margin-top:15px;">
+                    ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <h2>Contacto</h2>
+        <p>Correo: jpg1075@gmail.com</p>
+        <p>Teléfono: +56 9 8765 4321</p>
+        <p>Dirección: Las orquideas, Coquimbo, Chile</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar límites de fecha dinámicamente
+            const nacimientoInput = document.getElementById('nacimiento');
+            const hoy = new Date().toISOString().split('T')[0];
+            const hace100Anos = new Date();
+            hace100Anos.setFullYear(hace100Anos.getFullYear() - 100);
+            nacimientoInput.max = hoy;
+            nacimientoInput.min = hace100Anos.toISOString().split('T')[0];
+
+            // === VALIDACIÓN DE CONTRASEÑA EN TIEMPO REAL ===
+            const passwordInput = document.getElementById('contrasena');
+            const passwordHint = document.getElementById('passwordHint');
+
+            function validarContrasena() {
+                const password = passwordInput.value;
+                let mensaje = '';
+                let color = '#666';
+
+                if (password.length === 0) {
+                    mensaje = 'Mínimo 8 caracteres, una mayúscula y un símbolo especial.';
+                    color = '#666';
+                } else {
+                    const tieneMayuscula = /[A-Z]/.test(password);
+                    const tieneSimbolo = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+                    const tieneLongitud = password.length >= 8;
+
+                    if (tieneLongitud && tieneMayuscula && tieneSimbolo) {
+                        mensaje = 'Contraseña segura';
+                        color = '#28a745';
+                    } else {
+                        let errores = [];
+                        if (!tieneLongitud) errores.push('mínimo 8 caracteres');
+                        if (!tieneMayuscula) errores.push('una mayúscula');
+                        if (!tieneSimbolo) errores.push('un símbolo especial');
+                        mensaje = 'Debe tener: ' + errores.join(', ');
+                        color = '#dc3545';
+                    }
+                }
+
+                passwordHint.textContent = mensaje;
+                passwordHint.style.color = color;
+            }
+
+            passwordInput.addEventListener('input', validarContrasena);
+
+            // === VALIDACIÓN DE NOMBRE EN TIEMPO REAL ===
+            const nombreInput = document.getElementById('nombre');
+            const nombreHint = document.getElementById('nombreHint');
+            const regexNombre = /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*(?:\s+[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*)+$/;
+
+            function validarNombreTiempoReal() {
+                const nombre = nombreInput.value;
+                let mensaje = '';
+                let color = '#666';
+
+                if (nombre.length === 0) {
+                    mensaje = 'Ejemplo: Juan Pérez';
+                    color = '#666';
+                } else if (regexNombre.test(nombre)) {
+                    mensaje = 'Nombre válido';
+                    color = '#28a745';
+                } else {
+                    mensaje = 'Debe tener al menos 2 palabras con mayúscula (ej: Juan Pérez)';
+                    color = '#dc3545';
+                }
+
+                nombreHint.textContent = mensaje;
+                nombreHint.style.color = color;
+            }
+
+            nombreInput.addEventListener('input', validarNombreTiempoReal);
+
+            // === VALIDACIÓN Y ENVÍO SIMULADO ===
+            document.getElementById('registroForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nombre = nombreInput.value;
+                const password = passwordInput.value;
+                const tieneMayuscula = /[A-Z]/.test(password);
+                const tieneSimbolo = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+                const tieneLongitud = password.length >= 8;
+
+                // Validar nombre
+                if (!regexNombre.test(nombre)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Nombre inválido',
+                        html: 'El nombre debe tener:<br>• Al menos 2 palabras<br>• Cada palabra con mayúscula (ej: Juan Pérez)',
+                        confirmButtonText: 'Entendido'
+                    });
+                    return;
+                }
+
+                // Validar contraseña
+                if (!tieneLongitud || !tieneMayuscula || !tieneSimbolo) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Contraseña insegura',
+                        html: 'La contraseña debe tener:<br>• Mínimo 8 caracteres<br>• Una mayúscula<br>• Un símbolo especial',
+                        confirmButtonText: 'Entendido'
+                    });
+                    return;
+                }
+
+                // Éxito simulado en demo
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Propietario registrado exitosamente (Demo).',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = 'login.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

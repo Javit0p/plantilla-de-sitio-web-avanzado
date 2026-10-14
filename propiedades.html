@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Propiedades - TerraViviendaChilena</title>
+    <link rel="stylesheet" href="estilo-de-la-pagina.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo-titulo">
+        <img src="imagenes/terraviviendachilena.jpg" alt="TerraViviendaChilena">
+        <h1>TerraViviendaChilena</h1>
+    </div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="propiedades.html">Propiedades</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Propiedades Disponibles</h1>
+
+    <!-- === FILTROS DE BÚSQUEDA === -->
+    <section class="filtros">
+        <form action="propiedades.html" method="GET" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end; background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+            <div style="flex: 1; min-width: 150px;">
+                <label for="tipo" style="display: block; font-weight: bold; margin-bottom: 5px;">Tipo</label>
+                <select id="tipo" name="tipo" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="">Todos</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Departamento">Departamento</option>
+                    <option value="Terreno">Terreno</option>
+                </select>
+            </div>
+            <div style="flex: 1; min-width: 150px;">
+                <label for="comuna" style="display: block; font-weight: bold; margin-bottom: 5px;">Comuna</label>
+                <select id="comuna" name="comuna" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option value="">Todas</option>
+                    <option value="Coquimbo">Coquimbo</option>
+                    <option value="La Serena">La Serena</option>
+                    <option value="Las Condes">Las Condes</option>
+                    <option value="Maipú">Maipú</option>
+                    <option value="Providencia">Providencia</option>
+                </select>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" style="background: #1e3a8a; color: white; border: none; padding: 9px 20px; border-radius: 5px; cursor: pointer;">Buscar</button>
+                <a href="propiedades.html" style="background: #6c757d; color: white; padding: 9px 20px; border-radius: 5px; text-decoration: none;">Limpiar</a>
+            </div>
+        </form>
+    </section>
+
+    <section>
+        <h3>4 propiedades encontradas</h3>
+        <div class="grid">
+            
+            <article class="card">
+                <img src="imagenes/casa1-evaluacion1.jpg" alt="Casa" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                <h3>Casa en Maipú, Santiago</h3>
+                <p>Hermosa casa familiar con amplio patio traseros, estacionamiento y buena conectividad...</p>
+                <p><strong>Precio:</strong> $115.000.000</p>
+                <a href="detalle-propiedad.html" class="btn">Ver más</a>
+            </article>
+
+            <article class="card">
+                <img src="imagenes/departamento1-evaluacion1.jpg" alt="Departamento" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                <h3>Departamento en Coquimbo</h3>
+                <p>Moderno departamento frente al mar con vista panorámica, piscina y bodega...</p>
+                <p><strong>Precio:</strong> $90.000.000</p>
+                <a href="detalle-propiedad.html" class="btn">Ver más</a>
+            </article>
+
+            <article class="card">
+                <img src="imagenes/terreno1-evaluacion1.jpg" alt="Terreno" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                <h3>Terreno en La Serena</h3>
+                <p>Amplio terreno urbanizado ideal para proyecto residencial o comercial...</p>
+                <p><strong>Precio:</strong> $60.000.000</p>
+                <a href="detalle-propiedad.html" class="btn">Ver más</a>
+            </article>
+
+            <article class="card">
+                <img src="imagenes/casa1-evaluacion1.jpg" alt="Casa" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                <h3>Casa en Las Condes</h3>
+                <p>Exclusiva casa de 2 pisos con jardín, quincho y finas terminaciones...</p>
+                <p><strong>Precio:</strong> $120.000.000</p>
+                <a href="detalle-propiedad.html" class="btn">Ver más</a>
+            </article>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 TerraViviendaChilena</p>
+</footer>
+
+</body>
+</html>

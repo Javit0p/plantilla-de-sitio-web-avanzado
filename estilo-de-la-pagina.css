@@ -1,0 +1,794 @@
+/* ============================================
+   PALETA "URBE NATURAL"
+   Ciudad + Naturaleza + Confianza
+   ============================================ */
+:root {
+    /* === AZULES (CIUDAD) === */
+    --azul-profundo: #0F2A4A;
+    --azul-acero: #2A4B7C;
+    --azul-claro: #4A7CB5;
+    
+    /* === VERDES (NATURALEZA) === */
+    --verde-salvia: #7A9B76;
+    --verde-menta: #8DBF8A;
+    --verde-oscuro: #5C7A58;
+    
+    /* === NARANJA (CONFIANZA) === */
+    --naranja-tierra: #D4834A;
+    --naranja-oscuro: #B86A36;
+    
+    /* === GRISES Y FONDOS === */
+    --fondo-claro: #F5F2EB;
+    --gris-suave: #E8E4DC;
+    --gris-texto: #4A4A4A;
+    --blanco: #FFFFFF;
+}
+
+/* ============================================
+   RESET Y ESTILOS GLOBALES
+   ============================================ */
+main {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    background: var(--fondo-claro);
+    color: var(--gris-texto);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+header {
+    background: var(--azul-profundo);
+    color: var(--blanco);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-titulo img {
+    width: 160px;
+    height: auto;
+}
+
+.logo-titulo h1 {
+    margin: 0;
+}
+
+header nav a {
+    color: var(--blanco);
+    margin: 0 12px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+header nav a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+    background: linear-gradient(135deg, rgba(15, 42, 74, 0.80) 0%, rgba(42, 75, 124, 0.75) 100%), 
+                url('imagenes/collage_pagina_principal.png') center/cover no-repeat;
+    padding: 100px 20px;
+    margin-bottom: 40px;
+    color: var(--blanco);
+    text-align: center;
+    border-radius: 0;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 15px;
+    color: #FFFFFF !important;  /* Forzar blanco */
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.60);  /* Sombra más fuerte */
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    opacity: 1;  /* Eliminar opacidad para que se vea más fuerte */
+    color: #FFFFFF !important;  /* Forzar blanco */
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.50);  /* Sombra más fuerte */
+}
+
+.hero a {
+    display: inline-block;
+    margin: 8px 12px;
+    padding: 14px 32px;
+    background: var(--naranja-tierra);
+    color: var(--blanco);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 131, 74, 0.30);
+}
+
+.hero a:hover {
+    background: var(--naranja-oscuro);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 131, 74, 0.40);
+}
+
+.hero a:last-child {
+    background: var(--naranja-tierra);
+    box-shadow: 0 4px 15px rgba(212, 131, 74, 0.30);
+}
+
+.hero a:last-child:hover {
+    background: var(--naranja-oscuro);
+    box-shadow: 0 8px 25px rgba(212, 131, 74, 0.40);
+}
+
+/* ============================================
+   BUSCADOR
+   ============================================ */
+.buscador {
+    background: var(--blanco);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+
+.buscador input,
+.buscador select {
+    border: 2px solid var(--gris-suave);
+    border-radius: 30px;
+    padding: 12px 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buscador input:focus,
+.buscador select:focus {
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 0 4px rgba(74, 124, 181, 0.10);
+    outline: none;
+}
+
+/* ============================================
+   FORMULARIO
+   ============================================ */
+.formulario {
+    width: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario input,
+.formulario button {
+    margin: 5px 0;
+    padding: 10px;
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+button, .btn {
+    background: var(--naranja-tierra);
+    color: var(--blanco);
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(212, 131, 74, 0.20);
+}
+
+button:hover, .btn:hover {
+    background: var(--naranja-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 131, 74, 0.30);
+}
+
+/* ============================================
+   SECCIONES Y TÍTULOS
+   ============================================ */
+section {
+    margin-bottom: 40px;
+}
+
+section h3 {
+    margin-left: 20px;
+    color: var(--azul-profundo);
+}
+
+h1, h2, h3, h4 {
+    color: var(--azul-profundo);
+}
+
+/* ============================================
+   TARJETAS
+   ============================================ */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: var(--blanco);
+    padding: 20px;
+    border-radius: 16px;
+    border: none;
+    border-left: 5px solid var(--verde-salvia);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(15, 42, 74, 0.12);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 12px;
+    transition: filter 0.3s ease;
+}
+
+.card:hover img {
+    filter: brightness(1.03) contrast(1.02);
+}
+
+.card h3 {
+    color: var(--azul-profundo);
+    margin-top: 12px;
+    font-size: 1.2rem;
+}
+
+/* ============================================
+   DESTACADAS
+   ============================================ */
+.destacadas {
+    text-align: center;
+    padding: 30px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    background: var(--azul-profundo);
+    color: var(--blanco);
+    text-align: center;
+    padding: 20px;
+    margin-top: 0;
+    border-radius: 0;
+}
+
+/* ============================================
+   DASHBOARD
+   ============================================ */
+.dashboard {
+    padding: 20px;
+}
+
+.dashboard h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--azul-profundo);
+    border-bottom: 4px solid var(--azul-claro);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* ============================================
+   MODALES
+   ============================================ */
+#formPropiedades {
+    background: var(--blanco);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#formPropiedades label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#formPropiedades input,
+#formPropiedades select,
+#formPropiedades textarea,
+#formPropiedades button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid var(--gris-suave);
+    box-sizing: border-box;
+}
+
+#formPropiedades textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ============================================
+   GALERÍA PREVIEW
+   ============================================ */
+#galeriaPreview {
+    margin-top: 20px;
+    justify-content: center;
+}
+
+#galeriaPreview img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* ============================================
+   LISTA DE PROPIEDADES
+   ============================================ */
+#listaPropiedades {
+    margin-top: 30px;
+    justify-content: center;
+}
+
+#listaPropiedades .card {
+    width: 300px;
+    border-left: 5px solid var(--verde-salvia);
+}
+
+/* ============================================
+   MENÚ DASHBOARD
+   ============================================ */
+.menu-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    background: var(--blanco);
+    padding: 15px 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.menu-dashboard a {
+    background: var(--gris-suave);
+    color: var(--azul-profundo);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.menu-dashboard a:hover {
+    background: var(--azul-profundo);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}
+
+.menu-dashboard button {
+    background: var(--verde-menta);
+    color: var(--azul-profundo);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(141, 191, 138, 0.20);
+}
+
+.menu-dashboard button:hover {
+    background: var(--verde-oscuro);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   FILTROS
+   ============================================ */
+.filtros form {
+    background: var(--blanco);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 30px;
+}
+
+.filtros select, .filtros input {
+    padding: 10px 14px;
+    border-radius: 30px;
+    border: 1px solid var(--gris-suave);
+    background: var(--fondo-claro);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filtros select:focus, .filtros input:focus {
+    border-color: var(--azul-claro);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(74, 124, 181, 0.08);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    header nav a {
+        margin: 0 6px;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .grid {
+        justify-content: center;
+    }
+    
+    .resumen {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-dashboard {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .menu-dashboard a,
+    .menu-dashboard button {
+        text-align: center;
+    }
+}
+
+/* ============================================
+   ANIMACIÓN DE ENTRADA PARA TARJETAS
+   ============================================ */
+.card {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.10s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.20s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.30s; }
+.card:nth-child(7) { animation-delay: 0.35s; }
+.card:nth-child(8) { animation-delay: 0.40s; }
+.card:nth-child(9) { animation-delay: 0.45s; }
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   RESUMEN DEL DASHBOARD
+   ============================================ */
+.resumen {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.resumen .card {
+    flex: 1;
+    min-width: 150px;
+    background: var(--blanco);
+    padding: 25px 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border-left: 6px solid var(--azul-claro);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.resumen .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(15, 42, 74, 0.12);
+}
+
+.resumen .card h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--azul-profundo);
+}
+
+.resumen .card p {
+    font-size: 1rem;
+    color: var(--gris-texto);
+    margin: 5px 0 0 0;
+    font-weight: 500;
+}
+
+.resumen .card:nth-child(1) { border-left-color: var(--azul-claro); }
+.resumen .card:nth-child(2) { border-left-color: var(--verde-salvia); }
+.resumen .card:nth-child(3) { border-left-color: var(--naranja-tierra); }
+
+/* ============================================
+    LISTA DE PROPIEDADES (DASHBOARD) - GRID
+   ============================================ */
+#listaPropiedades {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0;
+}
+
+#listaPropiedades .card {
+    border: 1px solid var(--gris-suave);
+    border-left: 5px solid var(--verde-salvia);
+}
+
+#listaPropiedades .card:hover {
+    border-color: var(--azul-claro);
+}
+
+/* ============================================
+   ESTILOS PARA EL LOGIN
+   ============================================ */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: var(--blanco);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.login-container h1 {
+    text-align: center;
+    color: var(--azul-profundo);
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    color: var(--gris-texto);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--gris-suave);
+    border-radius: 30px;
+    margin-bottom: 15px;
+    background: var(--fondo-claro);
+    color: var(--gris-texto);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: var(--azul-claro);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(74, 124, 181, 0.10);
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: var(--naranja-tierra);
+    color: var(--blanco);
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-container button:hover {
+    background: var(--naranja-oscuro);
+    transform: translateY(-2px);
+}
+
+.login-container .registro-link {
+    text-align: center;
+    margin-top: 15px;
+    color: var(--gris-texto);
+}
+
+.login-container .registro-link a {
+    color: var(--azul-claro);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-container .registro-link a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   ESTILOS PARA REGISTROS
+   ============================================ */
+#registro {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--blanco);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+#registro header {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    position: static;
+    margin-bottom: 20px;
+}
+
+#registro header h1 {
+    color: var(--azul-profundo);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+#registro header p {
+    color: var(--gris-texto);
+    text-align: center;
+    font-size: 1rem;
+}
+
+#registro article h2 {
+    color: var(--azul-profundo);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+#registro form div {
+    margin-bottom: 15px;
+}
+
+#registro form label {
+    display: block;
+    color: var(--gris-texto);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+#registro form input,
+#registro form select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--gris-suave);
+    border-radius: 30px;
+    background: var(--fondo-claro);
+    color: var(--gris-texto);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+#registro form input:focus,
+#registro form select:focus {
+    border-color: var(--azul-claro);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(74, 124, 181, 0.10);
+}
+
+#registro form small {
+    color: #666;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 5px;
+}
+
+#registro form button {
+    width: 100%;
+    padding: 14px;
+    background: var(--naranja-tierra);
+    color: var(--blanco);
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 131, 74, 0.30);
+}
+
+#registro form button:hover {
+    background: var(--naranja-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 131, 74, 0.40);
+}
+
+#registro .registro-link {
+    text-align: center;
+    margin-top: 15px;
+    color: var(--gris-texto);
+}
+
+#registro .registro-link a {
+    color: var(--azul-claro);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#registro .registro-link a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el footer de las páginas de registro */
+#contacto {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+    color: var(--gris-texto);
+    background: transparent;
+    padding: 20px;
+    border-radius: 0;
+}
+
+#contacto h2 {
+    color: var(--azul-profundo);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#contacto p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}

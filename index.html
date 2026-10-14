@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>TerraViviendaChilena</title>
+    <link rel="stylesheet" href="estilo-de-la-pagina.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo-titulo">
+        <img src="imagenes/terraviviendachilena.jpg" alt="TerraViviendaChilena">
+        <h1>TerraViviendaChilena</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="propiedades.html">Propiedades</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <h2>Encuentra tu hogar ideal</h2>
+        <p>Compra, vende o gestiona propiedades fácilmente</p>
+        <a href="registro-del-administrador.html">Registrate como administrador</a>
+        <a href="registro-del-propietario.html">Registrate como propietario</a>
+    </section>
+
+    <section class="buscador">
+    <h3>Buscar Propiedad</h3>
+    <form action="propiedades.html" method="GET">
+        <select name="tipo" style="width: 30%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <option value="">Tipo</option>
+            <option value="Casa">Casa</option>
+            <option value="Departamento">Departamento</option>
+            <option value="Terreno">Terreno</option>
+        </select>
+        <input type="text" name="comuna" placeholder="Comuna" style="width: 30%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 10px 20px; background: #1e3a8a; color: white; border: none; border-radius: 5px;">Buscar</button>
+    </form>
+</section>
+
+<section class="destacadas">
+    <h2>Propiedades Destacadas</h2>
+
+    <div class="grid">
+
+        <article class="card">
+            <img src="imagenes/casa1-evaluacion1.jpg" alt="Casa en La Serena">
+            <h3>Casa en Maipú, Santiago</h3>
+            <p>$515.152</p>
+            <a href="propiedades.html" class="btn">Ver más</a>
+        </article>
+
+        <article class="card">
+            <img src="imagenes/departamento1-evaluacion1.jpg" alt="Departamento en Coquimbo">
+            <h3>Departamento en Coquimbo</h3>
+            <p>$90.000.000</p>
+            <a href="propiedades.html" class="btn">Ver más</a>
+        </article>
+
+        <article class="card">
+            <img src="imagenes/terreno1-evaluacion1.jpg" alt="Terreno en La Serena">
+            <h3>Terreno en La Serena</h3>
+            <p>$60.000.000</p>
+            <a href="propiedades.html" class="btn">Ver más</a>
+        </article>
+
+    </div>
+</section>
+</main>
+
+<footer>
+    <p>© 2026 TerraViviendaChilena</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="estilo-de-la-pagina.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<main class="dashboard">
+    <h2>Panel de Administración</h2>
+
+    <nav class="menu-dashboard">
+        <a href="#propiedades">Propiedades</a>
+        <button onclick="abrirModalAgregar()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">Agregar Propiedad</button>
+        <a href="login.html" style="color: #f97316; margin-left: auto;">Cerrar sesión</a>
+    </nav>
+
+    <section class="resumen">
+        <div class="card">Usuarios: 10+</div>
+        <div class="card">Propiedades: 2</div>
+        <div class="card">Publicaciones: 2</div>
+    </section>
+
+    <section id="propiedades">
+        <h3>Gestión de Propiedades</h3>
+
+        <div id="listaPropiedades" class="grid">
+            <!-- TARJETA DE EJEMPLO 1 -->
+            <div class="card">
+                <img src="imagenes/propiedad-default.jpg" alt="Casa" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                <h3>Casa</h3>
+                <p>Hermosa casa familiar con amplio jardín y excelente iluminación natural...</p>
+                <p><strong>Precio:</strong> $120.000.000</p>
+                <p><strong>Comuna:</strong> Las Condes</p>
+                <p><strong>Propietario:</strong> Juan Pérez</p>
+                <p><strong>Estado:</strong> publicado</p>
+                <button onclick="abrirModalEditar()" class="btn" style="background: #ffc107; color: #000; border:none; padding: 5px 10px; border-radius: 5px; cursor:pointer; margin-right: 5px;">Editar</button>
+                <button onclick="confirmarEliminacion(event, 1)" class="btn" style="background:#dc3545; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Eliminar</button>
+            </div>
+
+            <!-- TARJETA DE EJEMPLO 2 -->
+            <div class="card">
+                <img src="imagenes/propiedad-default.jpg" alt="Departamento" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;">
+                <h3>Departamento</h3>
+                <p>Moderno departamento céntrico, cercano a metro y servicios principales...</p>
+                <p><strong>Precio:</strong> $85.000.000</p>
+                <p><strong>Comuna:</strong> Providencia</p>
+                <p><strong>Propietario:</strong> María González</p>
+                <p><strong>Estado:</strong> publicado</p>
+                <button onclick="abrirModalEditar()" class="btn" style="background: #ffc107; color: #000; border:none; padding: 5px 10px; border-radius: 5px; cursor:pointer; margin-right: 5px;">Editar</button>
+                <button onclick="confirmarEliminacion(event, 2)" class="btn" style="background:#dc3545; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Eliminar</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- MODAL DE AGREGAR PROPIEDAD -->
+<div id="modalAgregar" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+    <div style="background: white; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 90%; overflow-y: auto;">
+        <h2>Agregar Propiedad</h2>
+        <form id="formPropiedades" enctype="multipart/form-data">
+            <input type="hidden" name="agregar" value="1">
+            
+            <div style="margin-bottom: 12px;">
+                <label>Tipo de Propiedad:</label>
+                <select id="tipoPropiedad" name="tipo" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="">Seleccione</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Departamento">Departamento</option>
+                    <option value="Terreno">Terreno</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 12px;">
+                <label>Propietario:</label>
+                <select name="propietario_id" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="">Seleccione un propietario</option>
+                    <option value="1">Juan Pérez</option>
+                    <option value="2">María González</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 12px;">
+                <label>Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="3" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div>
+                    <label>Baños:</label>
+                    <input type="number" id="banos" name="banos" value="0" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label>Dormitorios:</label>
+                    <input type="number" id="dormitorios" name="dormitorios" value="0" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+                <div>
+                    <label>Área Terreno (m²):</label>
+                    <input type="number" id="areaTerreno" step="0.01" name="area_terreno" value="0" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label>Área Construida (m²):</label>
+                    <input type="number" id="areaConstruida" step="0.01" name="area_construida" value="0" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+                <div>
+                    <label>Precio CLP:</label>
+                    <input type="number" id="precioCLP" name="precio_clp" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label>Precio UF (Cálculo Automático):</label>
+                    <input type="number" id="precioUF" name="precio_uf" readonly style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #f0f0f0;">
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+                <div>
+                    <label>Fecha de Publicación:</label>
+                    <input type="date" id="fechaPublicacion" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label>Horario de Visita:</label>
+                    <input type="text" id="visita" placeholder="Ej: Lunes a Viernes 10:00 - 18:00" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+            </div>
+
+            <div style="margin-top: 12px;">
+                <label><strong>Características (Seleccionar al menos una):</strong></label>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 5px;">
+                    <label><input type="checkbox" id="bodega"> Bodega</label>
+                    <label><input type="checkbox" id="estacionamiento"> Estacionamiento</label>
+                    <label><input type="checkbox" id="logia"> Logia</label>
+                    <label><input type="checkbox" id="cocina"> Cocina</label>
+                    <label><input type="checkbox" id="antejardin"> Antejardín</label>
+                    <label><input type="checkbox" id="patio"> Patio</label>
+                    <label><input type="checkbox" id="piscina"> Piscina</label>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+                <div>
+                    <label>Comuna:</label>
+                    <input type="text" name="comuna" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label>Sector:</label>
+                    <input type="text" name="sector" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+            </div>
+            
+            <div style="margin-top: 12px;">
+                <label>Estado:</label>
+                <select name="estado" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                    <option value="publicado" selected>Publicado</option>
+                    <option value="desactivado">Desactivado</option>
+                </select>
+            </div>
+            
+            <div style="margin-top: 12px;">
+                <label>Fotografías (máximo 10, formatos JPG, PNG, WEBP):</label>
+                <input type="file" id="fotografias" name="fotografias[]" multiple accept=".jpg,.jpeg,.png,.webp" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                <small style="color:#666;">Puedes seleccionar hasta 10 imágenes. Tamaño máximo: 5MB por imagen.</small>
+                <div id="galeriaPreview" style="display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px;"></div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Agregar Propiedad</button>
+                <button type="button" onclick="cerrarModalAgregar()" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL DE EDICIÓN (DEMO) -->
+<div id="modalEditar" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+    <div style="background: white; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 90%; overflow-y: auto;">
+        <h2>Editar Propiedad (Demo)</h2>
+        <form onsubmit="event.preventDefault(); Swal.fire('Éxito', 'Cambios guardados en la demo', 'success'); cerrarModalEditar();">
+            <div style="margin-bottom: 12px;">
+                <label>Tipo:</label>
+                <select name="tipo" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="Casa" selected>Casa</option>
+                    <option value="Departamento">Departamento</option>
+                    <option value="Terreno">Terreno</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 12px;">
+                <label>Descripción:</label>
+                <textarea name="descripcion" rows="3" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">Hermosa casa familiar con amplio jardín...</textarea>
+            </div>
+            
+            <div style="margin-top: 12px;">
+                <label>Precio CLP:</label>
+                <input type="number" value="120000000" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Guardar cambios</button>
+                <button type="button" onclick="cerrarModalEditar()" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function abrirModalAgregar() {
+    document.getElementById('modalAgregar').style.display = 'flex';
+}
+
+function cerrarModalAgregar() {
+    document.getElementById('modalAgregar').style.display = 'none';
+}
+
+function abrirModalEditar() {
+    document.getElementById('modalEditar').style.display = 'flex';
+}
+
+function cerrarModalEditar() {
+    document.getElementById('modalEditar').style.display = 'none';
+}
+
+function confirmarEliminacion(event, id) {
+    event.preventDefault();
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Esta acción eliminará la tarjeta en esta demo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const btn = event.target;
+            const card = btn.closest('.card');
+            if (card) card.remove();
+            Swal.fire('Eliminado', 'La propiedad fue eliminada de la vista', 'success');
+        }
+    });
+}
+</script>
+
+<script src="validaciones.js"></script>
+</body>
+</html>
